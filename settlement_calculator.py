@@ -17,9 +17,7 @@ def get_mdr_rate(method: str) -> float:
 def calculate_fee(amount: float, method: str) -> float:
     """Calculate processing fee for a single transaction."""
     rate = get_mdr_rate(method)
-    # BUG: rate is already a percentage (e.g. 2.5), dividing by 100 twice
-    # makes it 0.00025 instead of 0.025 — fee is 100x too small
-    fee = amount * (rate / 100) / 100
+    fee = amount * (rate / 100)
     return round(fee, 2)
 
 
